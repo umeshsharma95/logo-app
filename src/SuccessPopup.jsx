@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap'
+import React, { useState } from 'react'
 import Lottie from "react-lottie";
-import christmasBox from './assets/christmas_box.json'
+// import christmasBox from './assets/christmas_box.json'
 import christmasTree from './assets/christmas_tree.json'
 import santa from './assets/santa.json'
+import Draggable from 'react-draggable';
+import './successPopup.css'
 
 const defaultOptions = {
   loop: true,
@@ -23,40 +24,42 @@ const defaultOptions2 = {
   }
 };
 
-function CongratsPopup({setIsOpen}) {
+function SuccessPopup({setIsOpen}) {
   const [isVisible, setIsVisible] = useState(false)
   const toggle = () => {
     setIsOpen(false)
     setIsVisible(false)
   }
+  const handleStop = () => {
+    setIsVisible(true)
+  }
 
   return (
     <>
-      <div className='congratsLottie'>
-      {isVisible && <div className="congratsLottie" onClick={toggle}>
+      {isVisible && <div className="congratsBox1" onClick={toggle}>
         <Lottie 
           options={defaultOptions2} 
-          height={140}
-          width={140}
+          height={240}
+          width={240}
           speed={1}
         />
       </div>}
-        <div onClick={() => setIsVisible(true)}>
+      <Draggable
+        onStart={() => !isVisible}
+        onStop={handleStop}
+        style={{width: '100%', height: '100%'}}
+        >
+        <div className='congratsLottie1'>
           <Lottie 
             options={defaultOptions} 
-            height={350}
-            width={350}
+            height={240}
+            width={240}
             speed={1}
           />
         </div>
-
-        {/* <div className='d-flex justify-content-center'>
-          <Button onClick={toggle} size='md' color="danger" className='align-item-center mt-4'>Retry</Button>
-        </div> */}
-        {/* <h2 className='my-4 text-center'>Congratulations! you have won 2GB data.</h2> */}
-      </div>
+      </Draggable>
     </>
   )
 }
 
-export default CongratsPopup
+export default SuccessPopup

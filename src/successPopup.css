@@ -1,0 +1,21 @@
+.congratsLottie1 {
+    position: absolute;
+    z-index: 3;
+    top: 35%;
+    /* transform: translate(0, -25%); */
+    left: 0;
+    right: 0;
+    /* width: 100%;
+    height: 100%; */
+}
+
+.congratsBox1 {
+    position: absolute;
+    z-index: 4;
+    top: 40%;
+    /* transform: translate(0, -10%); */
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}

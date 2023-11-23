@@ -15,7 +15,10 @@
     "mind-ar": "^1.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.6",
     "react-lottie": "^1.2.3",
+    "react-snowfall": "^1.2.1",
+    "react-switch": "^7.0.0",
     "reactstrap": "^9.2.0"
   },
   "devDependencies": {
