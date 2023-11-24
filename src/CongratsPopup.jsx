@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap'
 import Lottie from "react-lottie";
 import christmasBox from './assets/christmas_box.json'
 import christmasTree from './assets/christmas_tree.json'
@@ -23,21 +22,21 @@ const defaultOptions2 = {
   }
 };
 
-function CongratsPopup({setIsOpen}) {
+function CongratsPopup({setIsOpen, isOpen, isChecked}) {
   const [isVisible, setIsVisible] = useState(false)
-  const toggle = () => {
-    setIsOpen(false)
-    setIsVisible(false)
-  }
+
+  useEffect(() => {
+    (!isOpen || isChecked) && setIsVisible(false)
+  }, [isOpen, isChecked])
 
   return (
     <>
       <div className='congratsLottie'>
-      {isVisible && <div className="congratsLottie" onClick={toggle}>
+      {isVisible && <div className="congratsLottie">
         <Lottie 
           options={defaultOptions2} 
-          height={140}
-          width={140}
+          height={240}
+          width={240}
           speed={1}
         />
       </div>}
@@ -49,11 +48,6 @@ function CongratsPopup({setIsOpen}) {
             speed={1}
           />
         </div>
-
-        {/* <div className='d-flex justify-content-center'>
-          <Button onClick={toggle} size='md' color="danger" className='align-item-center mt-4'>Retry</Button>
-        </div> */}
-        {/* <h2 className='my-4 text-center'>Congratulations! you have won 2GB data.</h2> */}
       </div>
     </>
   )

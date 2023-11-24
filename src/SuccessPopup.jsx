@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Lottie from "react-lottie";
 // import christmasBox from './assets/christmas_box.json'
 import christmasTree from './assets/christmas_tree.json'
@@ -24,19 +24,20 @@ const defaultOptions2 = {
   }
 };
 
-function SuccessPopup({setIsOpen}) {
+function SuccessPopup({setIsOpen, isOpen, isChecked}) {
   const [isVisible, setIsVisible] = useState(false)
-  const toggle = () => {
-    setIsOpen(false)
-    setIsVisible(false)
-  }
+
+  useEffect(() => {
+    (!isOpen || !isChecked) && setIsVisible(false)
+  }, [isOpen, isChecked])
+
   const handleStop = () => {
     setIsVisible(true)
   }
 
   return (
     <>
-      {isVisible && <div className="congratsBox1" onClick={toggle}>
+      {isVisible && <div className="congratsBox1">
         <Lottie 
           options={defaultOptions2} 
           height={240}
@@ -47,7 +48,6 @@ function SuccessPopup({setIsOpen}) {
       <Draggable
         onStart={() => !isVisible}
         onStop={handleStop}
-        style={{width: '100%', height: '100%'}}
         >
         <div className='congratsLottie1'>
           <Lottie 
